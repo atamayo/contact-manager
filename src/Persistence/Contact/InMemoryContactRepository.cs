@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Persistence.Contact
 {
-    class InMemoryContactRepository : IContactRepository
+    public class InMemoryContactRepository : IContactRepository
     {
         private readonly ICollection<IContact> _contacts;
 
