@@ -1,0 +1,17 @@
+<Project>
+<PropertyGroup>
+    <Product>Contact Manager</Product>
+    <Company>Contoso SA</Company>
+    <Copyright>Copyright © Contoso 2020</Copyright>
+    <Configuration Condition="$(Configuration) == ''">Debug</Configuration>
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)obj/$(MSBuildProjectName)/</BaseIntermediateOutputPath>
+    <OutputPath>$(MSBuildThisFileDirectory)bin/$(MSBuildProjectName)/$(Configuration)/</OutputPath>
+    <LangVersion>latest</LangVersion>
+    <VersionPrefix>0.0.1</VersionPrefix>
+    <VersionSuffix>dev</VersionSuffix>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <ErrorReport>prompt</ErrorReport>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+</PropertyGroup>
+</Project>
