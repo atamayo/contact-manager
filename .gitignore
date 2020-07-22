@@ -1,0 +1,118 @@
+#Ignore thumbnails created by windows
+Thumbs.db
+
+#Ignore files created by IDEs
+.vs/
+.idea/
+/.vscode/
+
+#Ignore files by extensions
+*.obj
+*.exe
+!Products/**/UpdNoah.exe
+!Products/**/ngen.exe
+!source/**/Coco.exe
+*.pdb
+*.user
+*.aps
+*.eto
+*.pch
+*.vspscc
+*.suo
+*.ncrunchsolution
+*.lnk
+
+#Ignore folders
+doc/
+fxCop/
+!build/Config/CodeAnalysis/FxCop
+IfariClient/
+IfariMiddleware/
+installerStaticData/
+nCover/
+obj/
+output-toolbox/
+packages/
+paket-files/
+targetTranslation/
+productCatalogResources/
+ExternalReferenceData/
+.store/
+
+[Bb]in
+!/Products/**/bin
+/[Cc]ache/
+/[Dd]eployment/
+/[Dd]ebug*/
+/[Ii]nstaller/
+/[Ll]ibs/
+/[Oo]utput/
+/[Rr]elease*/
+/[Tt]emp/
+
+[Bb]uild/Config/.toolbox
+[Bb]uild/Tools/
+[Bb]uild/packages/
+[Bb]uild/Solutions
+[Bb]uild/[Ll]og
+[Bb]uild/Sonova.Bootstrapper
+
+#Ignore specific files and folders
+**/.paket/*
+!.paket/paket.bootstrapper.exe
+
+## build files
+/build/Config/CodeAnalysis/StyleCop/StyleCop.Cache
+/build/Config/NUnit/*.xml
+/build/scripts/Chinook2.volatile.constants
+
+## Temporary files when running MSBuild jobs directly (not through ToolBox)
+/build/scripts/*.teamcity
+/build/scripts/*.teamcity.msbuild.tcargs
+/build/scripts/*.log
+
+## Generated solutions
+/source/.Solutions/*.*
+
+## PlatformInternal licenses.licx
+/source/PlatformInternal/**/Properties/licenses.licx
+
+## InfoData/ProductCatalog
+/InfoData/ProductCatalog/Cocoon/Accessory
+/InfoData/ProductCatalog/Cocoon/AccessoryUpgradeDescription
+/InfoData/ProductCatalog/Cocoon/HearingInstrument
+/InfoData/ProductCatalog/Cocoon/HearingInstrumentUpgradeDescription
+/InfoData/ProductCatalog/**/Dwom.xls
+/InfoData/ProductCatalog/Cocoon/FmSuccessware.xls
+/InfoData/ProductCatalog/Cocoon/HiType.xls
+/InfoData/ProductCatalog/**/ProductLineId.xls
+/InfoData/ProductCatalog/Cocoon/SAP.xls
+/InfoData/ProductCatalog/Cocoon/_RequirementsDump
+/InfoData/ProductCatalog/Cocoon/_DumpReq70forEcommerce
+/Products/FittingApps/Target/requirements
+/InfoData/ProductCatalog/Swift/Accessory
+/InfoData/ProductCatalog/Swift/AccessoryUpgradeDescription
+/InfoData/ProductCatalog/Swift/HearingInstrument
+/InfoData/ProductCatalog/Swift/HearingInstrumentUpgradeDescription
+/Products/Target/TranslationSources/translations
+
+## Development DBs
+[Pp]roducts/[Cc]ommon/[Dd]evelopment[Hh]i[Rr]eleases/*.sqlite
+/source/Cocoon/Cocoon.AppServices.Web/Service References/ServiceReferences.Alps/Sonova.Chinook.Application.AppServices.Web.ServiceReferences.Alps.Target_If_StatusResponse_V3.datasource
+/source/Cocoon/Cocoon.AppServices.Web/Service References/ServiceReferences.Alps/Sonova.Chinook.Application.AppServices.Web.ServiceReferences.Alps.Target_If_SearchClient_Response_V3.datasource
+/source/Cocoon/Cocoon.AppServices.Web/Service References/ServiceReferences.Alps/Sonova.Chinook.Application.AppServices.Web.ServiceReferences.Alps.Target_If_ReadClient_Response_V3.datasource
+/source/Cocoon/Cocoon.AppServices.Web/Service References/ServiceReferences.Alps/Sonova.Chinook.Application.AppServices.Web.ServiceReferences.Alps.Target_If_GetStock_Response_V3.datasource
+/source/Cocoon/Cocoon.AppServices.Web/Service References/ServiceReferences.Alps/Sonova.Chinook.Application.AppServices.Web.ServiceReferences.Alps.Target_If_GetActiveAccount_Response_V3.datasource
+/source/Cocoon/Cocoon.AppServices.Web/Service References/ServiceReferences.Alps/Sonova.Chinook.Application.AppServices.Web.ServiceReferences.Alps.Target_If_CreateClient_Response_V3.datasource
+/source/Cocoon/Cocoon.AppServices.Web/Service References/ServiceReferences.Alps/configuration91.svcinfo
+/source/Cocoon/Cocoon.AppServices.Web/Service References/ServiceReferences.Alps/configuration.svcinfo
+
+## Artifacts from InstalShield build process
+## Extracted strings
+/Products/SoundWave/Installation/Installer/St*.txt
+## Artifacts after Scripts build
+/Products/SoundWave/Installation/Installer/Script Files/*.dbg
+/Products/SoundWave/Installation/Installer/Script Files/*.inx
+/Products/SoundWave/Installation/Installer/Script Files/*.isr
+/Products/SoundWave/Installation/Installer/Script Files/*.map
+/Products/SoundWave/Installation/Installer/Script Files/*.obs
