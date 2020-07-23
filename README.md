@@ -1,3 +1,3 @@
 # contact-manager
 
-Sample aplication to apply new concepts and technologies.
+Sample application to apply new concepts and technologies.
