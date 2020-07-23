@@ -1,9 +1,15 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace UI.WPF.ContactManager
 {
-    interface IContactsViewModel
+    public interface IContactsViewModel : IViewModelBase
     {
         ObservableCollection<ContactUi> ContactsCollection { get; }
+
+        ICommand NewContactCommand { get; }
+
+        event Action NewContactRequested;
     }
 }

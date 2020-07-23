@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using CrossCuttingConcerns.DependencyInjection;
+using GalaSoft.MvvmLight;
 
 namespace UI.WPF
 {
@@ -17,7 +18,16 @@ namespace UI.WPF
 
             Container = builder.Build();
 
-              compositionRoot.Bootstrap();
+            if (ViewModelBase.IsInDesignModeStatic)
+            {
+
+            }
+            else
+            {
+
+                compositionRoot.Bootstrap();
+            }
+            
         }
 
         public MainViewModel Main => Container.Resolve<MainViewModel>();

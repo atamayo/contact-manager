@@ -5,21 +5,33 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-     
     <Grid>
-        <DataGrid ItemsSource="{Binding ContactsCollection}" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" 
+                Content="New contact" 
+                HorizontalAlignment="Right"
+                Command="{Binding NewContactCommand}"
+                CommandParameter="newContact"
+                Margin="5,5,5,5">
+        </Button>
+
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding ContactsCollection}" 
                   AutoGenerateColumns="False" 
                   HorizontalAlignment="Left" 
                   Margin="0,5,0,0"
                   VerticalAlignment="Top"
                   Height="Auto" 
                   Width="Auto">
-
             <DataGrid.Columns>
-            <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+             <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
              <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" />
-            <DataGridTextColumn Header="MobilePhone" Binding="{Binding MobilePhone}" />
-                <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
+             <DataGridTextColumn Header="MobilePhone" Binding="{Binding MobilePhone}" />
+             <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
             </DataGrid.Columns>
     </DataGrid>
     </Grid>

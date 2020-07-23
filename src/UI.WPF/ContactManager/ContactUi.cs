@@ -3,16 +3,16 @@ using GalaSoft.MvvmLight;
 
 namespace UI.WPF.ContactManager
 {
-    class ContactUi : ObservableObject
+    public class ContactUi : ObservableObject
     {
-        private Guid _id;
+        private int _id;
         private string _name;
         private string _surname;
         private string _mobilePhone;
         private string _email;
 
 
-        public Guid Id
+        public int Id
         {
             get => _id;
             set

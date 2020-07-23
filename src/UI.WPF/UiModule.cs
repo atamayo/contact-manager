@@ -8,17 +8,10 @@ namespace UI.WPF
     {
         protected override void Load(ContainerBuilder builder)
         {
-            if (ViewModelBase.IsInDesignModeStatic)
-            {
-
-            }
-            else
-            {
-
-            }
+           
 
             builder.RegisterType<ContactsViewModel>().As<IContactsViewModel>();
-
+            builder.RegisterType<ContactDetailViewModel>().As<IContactDetailViewModel>();
             builder.RegisterType<MainViewModel>();
         }
     }
