@@ -2,31 +2,31 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
-using Domain.Contact;
+using Domain;
 using System.Linq;
 
-namespace Persistence.Contact
+namespace Persistence
 {
     public class InMemoryContactRepository : IContactRepository
     {
-        private readonly ICollection<IContact> _contacts;
+        private readonly ICollection<Contact> _contacts;
 
         public InMemoryContactRepository()  
         {
-            _contacts = new Collection<IContact>();
+            _contacts = new Collection<Contact>();
         }
 
-        public IContact GetById(Guid id)
+        public Contact GetById(int id)
         {
             return _contacts.FirstOrDefault(c => c.Id == id);
         }
 
-        public void Save(IContact contact)
+        public void Save(Contact contact)
         {
             _contacts.Add(contact);
         }
 
-        public ICollection<IContact> GetAll()
+        public ICollection<Contact> GetAll()
         {
             return _contacts;
         }

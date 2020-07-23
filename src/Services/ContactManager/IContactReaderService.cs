@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Domain.Contact;
+using Domain;
 
 namespace Services.ContactManager
 {

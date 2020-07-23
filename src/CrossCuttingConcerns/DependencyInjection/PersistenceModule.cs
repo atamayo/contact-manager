@@ -2,8 +2,8 @@
 using Autofac;
 using Autofac.Core;
 using Autofac.Core.Registration;
-using Domain.Contact;
-using Persistence.Contact;
+using Domain;
+using Persistence;
 
 namespace CrossCuttingConcerns.DependencyInjection
 {

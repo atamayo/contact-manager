@@ -16,6 +16,8 @@ namespace UI.WPF
             builder.RegisterModule<UiModule>();
 
             Container = builder.Build();
+
+              compositionRoot.Bootstrap();
         }
 
         public MainViewModel Main => Container.Resolve<MainViewModel>();
