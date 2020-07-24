@@ -15,12 +15,9 @@ namespace Services.ContactManager
             _contactRepository = contactRepository;
         }
 
-        public Task AddNewAsync(Contact contact)
+        public async Task AddNewAsync(Contact contact)
         {
-
-            _contactRepository.Save(contact);
-
-            return Task.CompletedTask;
+            await _contactRepository.Save(contact);
         }
     }
 }
