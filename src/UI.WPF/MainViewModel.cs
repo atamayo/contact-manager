@@ -18,40 +18,11 @@ namespace UI.WPF
             ContactDetailViewModel.CancelRequested += OnCancelRequested;
         }
 
-        private void OnCancelRequested()
-        {
-            PerformNavigation("contactsView");
-        }
-
-        private void OnNewContactRequested()
-        {
-            PerformNavigation("newContactView");
-        }
-
-        private void PerformNavigation(string destination)
-        {
-            switch (destination)
-            {
-                case "newContactView":
-                    CurrentViewModel = ContactDetailViewModel;
-                    break;
-
-                case "contactsView":
-                    CurrentViewModel = ContactsViewModel;
-                    break;
-            }
-        }
-
-
         public IContactsViewModel ContactsViewModel { get; }
-        public IContactDetailViewModel ContactDetailViewModel { get; private set;}
-
+        public IContactDetailViewModel ContactDetailViewModel { get; }
         public IViewModelBase CurrentViewModel
         {
-            get
-            {
-                return _currentViewModel;
-            }
+            get => _currentViewModel;
             set
             {
                 _currentViewModel = value;
@@ -60,6 +31,28 @@ namespace UI.WPF
             }
         }
 
-       
+        private void OnCancelRequested()
+        {
+            PerformNavigation(Views.ContactsView);
+        }
+
+        private void OnNewContactRequested()
+        {
+            PerformNavigation(Views.DetailsContactView);
+        }
+
+        private void PerformNavigation(Views views)
+        {
+            switch (views)
+            {
+                case  Views.DetailsContactView:
+                    CurrentViewModel = ContactDetailViewModel;
+                    break;
+
+                case Views.ContactsView:
+                    CurrentViewModel = ContactsViewModel;
+                    break;
+            }
+        }
     }
 }

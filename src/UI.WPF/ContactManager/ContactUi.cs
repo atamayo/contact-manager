@@ -45,13 +45,21 @@ namespace UI.WPF.ContactManager
         public string MobilePhone
         {
             get => _mobilePhone;
-            set => _mobilePhone = value;
+            set
+            {
+                _mobilePhone = value;
+                RaisePropertyChanged(nameof(MobilePhone));
+            }
         }
 
         public string Email
         {
             get => _email;
-            set => _email = value;
+            set
+            {
+                _email = value;
+                RaisePropertyChanged(nameof(Email));
+            }
         }
     }
 }

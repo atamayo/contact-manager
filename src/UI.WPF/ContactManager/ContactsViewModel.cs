@@ -27,5 +27,10 @@ namespace UI.WPF.ContactManager
         {
             NewContactRequested();
         }
+
+        public void LoadContacts()
+        {
+         
+        }
     }
 }

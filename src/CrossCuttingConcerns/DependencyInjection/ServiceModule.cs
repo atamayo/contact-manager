@@ -11,6 +11,7 @@ namespace CrossCuttingConcerns.DependencyInjection
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<ContactReaderService>().As<IContactReaderService>();
+            builder.RegisterType<ContactCreationService>().As<IContactCreationService>();
         }
     }
 }

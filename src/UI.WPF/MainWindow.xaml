@@ -5,7 +5,7 @@
         xmlns:local ="clr-namespace:UI.WPF.ContactManager"
         x:Class="UI.WPF.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="Contacts Manager" Height="450" Width="800"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
     
     <Window.Resources>

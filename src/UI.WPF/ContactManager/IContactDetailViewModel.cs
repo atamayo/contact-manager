@@ -6,6 +6,10 @@ namespace UI.WPF.ContactManager
     public interface IContactDetailViewModel : IViewModelBase
     {
         event Action CancelRequested;
-        ICommand CancelCommand { get; }
+        ICommand CancelContactCommand { get; }
+
+        ICommand SaveContactCommand { get; }
+
+        ContactUi Contact { get; }
     }
 }

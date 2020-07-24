@@ -9,21 +9,24 @@ namespace CrossCuttingConcerns.DependencyInjection
 {
     public class CompositionRoot
     {
-        readonly ContactContext _context;
+        readonly ContactManagerDbContext _managerDbContext;
         public CompositionRoot()
         {
-           _context = new ContactContext();
+
+            
+           _managerDbContext = new ContactManagerDbContext();
         }
         
         public void ComposeApplication(ContainerBuilder builder)
         {
             builder.RegisterModule<PersistenceModule>();
             builder.RegisterModule<ServiceModule>();
+            builder.Register(c=>_managerDbContext);
         }
 
         public  void Bootstrap()
         { 
-           _context.Database.EnsureCreated();
+           _managerDbContext.Database.EnsureCreated();
         }
     }
 }

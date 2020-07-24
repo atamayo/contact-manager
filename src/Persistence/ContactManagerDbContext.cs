@@ -2,10 +2,19 @@
 using Domain;
 namespace Persistence
 {
-    public class ContactContext : DbContext
+    public class ContactManagerDbContext : DbContext
     {
+        public ContactManagerDbContext()
+        {
+            
+        }
 
-
+        public ContactManagerDbContext(DbContextOptions<ContactManagerDbContext> options)
+        : base(options)
+        {
+            
+            
+        }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<SocialNetwork> SocialNetworks { get; set; }
 

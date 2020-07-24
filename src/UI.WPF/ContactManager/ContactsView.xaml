@@ -1,10 +1,17 @@
-﻿<UserControl x:Class="UI.WPF.ContactManager.ContactsView"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors" x:Class="UI.WPF.ContactManager.ContactsView" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Loaded">
+            <b:CallMethodAction TargetObject="{Binding}"
+                                MethodName="LoadContacts" />
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -12,14 +19,14 @@
         </Grid.RowDefinitions>
 
         <Button Grid.Row="0" 
-                Content="New contact" 
+                Content="Add Contact" 
                 HorizontalAlignment="Right"
                 Command="{Binding NewContactCommand}"
                 CommandParameter="newContact"
-                Margin="5,5,5,5">
-        </Button>
+                Margin="5,5,5,5"/>
 
         <DataGrid Grid.Row="1"
+                  IsReadOnly="True"
                   ItemsSource="{Binding ContactsCollection}" 
                   AutoGenerateColumns="False" 
                   HorizontalAlignment="Left" 
@@ -28,11 +35,11 @@
                   Height="Auto" 
                   Width="Auto">
             <DataGrid.Columns>
-             <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-             <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" />
-             <DataGridTextColumn Header="MobilePhone" Binding="{Binding MobilePhone}" />
-             <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" />
+                <DataGridTextColumn Header="MobilePhone" Binding="{Binding MobilePhone}" />
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
             </DataGrid.Columns>
-    </DataGrid>
+        </DataGrid>
     </Grid>
 </UserControl>

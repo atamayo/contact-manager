@@ -7,9 +7,9 @@ namespace UI.WPF.ContactManager
     public interface IContactsViewModel : IViewModelBase
     {
         ObservableCollection<ContactUi> ContactsCollection { get; }
-
         ICommand NewContactCommand { get; }
-
         event Action NewContactRequested;
+
+        void LoadContacts();
     }
 }
