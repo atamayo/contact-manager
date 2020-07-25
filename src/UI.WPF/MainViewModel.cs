@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System.Windows.Media;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using UI.WPF.ContactManager;
 
@@ -17,11 +18,9 @@ namespace UI.WPF
             ContactsViewModel.EditContactRequested += OnContactEditRequested;
 
             ContactDetailViewModel = contactDetailViewModel;
-            ContactDetailViewModel.CancelRequested += OnCancelRequested;
+            ContactDetailViewModel.CancelRequested += OnCancelSaveContactRequested;
             ContactDetailViewModel.SaveCompleted += OnSaveCompleted;
         }
-
-      
 
         public IContactsViewModel ContactsViewModel { get; }
         public IContactDetailViewModel ContactDetailViewModel { get; }
@@ -42,16 +41,16 @@ namespace UI.WPF
             ContactDetailViewModel.Contact = contactUi;
             PerformNavigation(Views.DetailsContactView);
         }
-
-
+        
         private void OnSaveCompleted()
         {
+            ContactsViewModel.RefreshContacts = true;
             PerformNavigation(Views.ContactsView);
         }
 
-
-        private void OnCancelRequested()
+        private void OnCancelSaveContactRequested()
         {
+            ContactsViewModel.RefreshContacts = false;
             PerformNavigation(Views.ContactsView);
         }
 

@@ -13,5 +13,7 @@ namespace UI.WPF.ContactManager
         event Action NewContactRequested;
         event Action<ContactUi> EditContactRequested;
         void LoadContacts();
+
+        bool RefreshContacts { get; set;  }
     }
 }

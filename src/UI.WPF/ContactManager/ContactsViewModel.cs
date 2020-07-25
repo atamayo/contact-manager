@@ -45,15 +45,20 @@ namespace UI.WPF.ContactManager
            NewContactRequested?.Invoke();
        }
 
-        public async void LoadContacts()
-        {
-            var contacts = await _contactServiceAdapter.GetAllContactsAsync();
+       public async void LoadContacts()
+       {
+           if (RefreshContacts)
+           {
+               var contacts = await _contactServiceAdapter.GetAllContactsAsync();
 
-            ContactsCollection.Clear();
-            foreach (var contactUi in contacts)
-            {
-                ContactsCollection.Add(contactUi);  
-            }
-        }
+               ContactsCollection.Clear();
+               foreach (var contactUi in contacts)
+               {
+                   ContactsCollection.Add(contactUi);
+               }
+           }
+       }
+
+       public bool RefreshContacts { get; set; } = true;
     }
 }
