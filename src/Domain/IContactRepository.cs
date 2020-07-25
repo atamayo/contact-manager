@@ -10,5 +10,6 @@ namespace Domain
        Task EditAsync(Contact contact);
        Task DeleteAsync(int id);
        Task<ICollection<Contact>> GetAllAsync();
+       Task<ICollection<Contact>> SearchAsync(string searchText);
     }
 }

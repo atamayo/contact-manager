@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace CrossCuttingConcerns
+namespace CrossCuttingConcerns.DataGenerator
 {
     class SurnameGenerator
     {
@@ -903,6 +901,7 @@ namespace CrossCuttingConcerns
                 "Sweeney",
                 "Sweet",
                 "Sykes",
+                "Tamayo",
                 "Talley",
                 "Tanner",
                 "Tate",

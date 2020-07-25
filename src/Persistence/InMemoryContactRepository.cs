@@ -38,5 +38,10 @@ namespace Persistence
         {
              return new Task<ICollection<Contact>>( ()=> _contacts.ToList());
         }
+
+        public Task<ICollection<Contact>> SearchAsync(string searchText)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Domain;
 using FizzWare.NBuilder;
-using FizzWare.NBuilder.Implementation;
-using FizzWare.NBuilder.PropertyNaming;
 
-namespace CrossCuttingConcerns
+namespace CrossCuttingConcerns.DataGenerator
 {
     internal class RandomContactGenerator
     {
@@ -55,8 +51,12 @@ namespace CrossCuttingConcerns
 
     internal enum Emails   
     {
-        gmail,
-        outlook,
-        icloud
+        Gmail,
+        Outlook,
+        iCloud,
+        Aol,
+        Yahoo,
+        Microsoft,
+        Apple
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using CrossCuttingConcerns.DataGenerator;
 using Persistence;
 
 namespace CrossCuttingConcerns.DependencyInjection
@@ -28,7 +29,7 @@ namespace CrossCuttingConcerns.DependencyInjection
                 if (context.Database.EnsureCreated())
                 {
                     var  randomContactGenerator = new RandomContactGenerator();
-                    var contacts = randomContactGenerator.GenerateContacts(100);
+                    var contacts = randomContactGenerator.GenerateContacts(5000);
                     context.Contacts.AddRange(contacts);
                     context.SaveChanges();
                 }

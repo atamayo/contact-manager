@@ -34,7 +34,6 @@ namespace UI.WPF
 
             }
         }
-
         private void OnContactEditRequested(ContactUi contactUi)
         {
             ContactDetailViewModel.EditMode = true;

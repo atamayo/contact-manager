@@ -18,12 +18,26 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" 
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
+
+            <TextBox  Width="623"
+                      x:Name="SearchTextBox"
+                      Margin="5,5,5,5" />
+            
+            <Button Content="Search"
+                    Command="{Binding SearchCommand}"
+                    CommandParameter="{Binding Path=Text, ElementName=SearchTextBox}"
+                    Margin="5,5,5,5"/>
+
+            <Button 
                 Content="Add Contact" 
-                HorizontalAlignment="Right"
                 Command="{Binding NewContactCommand}"
                 CommandParameter="newContact"
-                Margin="5,5,5,5"/>
+                Margin="5,5,5,5"
+                 />
+
+        </StackPanel>
+        
 
         <DataGrid Grid.Row="1"
                   GridLinesVisibility="None"
@@ -38,8 +52,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="100" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Surname" Width="100" Binding="{Binding Surname}" />
-                <DataGridTextColumn Header="MobilePhone" Width="200" Binding="{Binding MobilePhone}" />
-                <DataGridTextColumn Header="Email" Width="200" Binding="{Binding Email}" />
+                <DataGridTextColumn Header="Mobile Phone" Width="200" Binding="{Binding MobilePhone}" />
+                <DataGridTextColumn Header="Email" Width="*" Binding="{Binding Email}" />
 
                 <DataGridTemplateColumn Width="50">
                     <DataGridTemplateColumn.CellTemplate>

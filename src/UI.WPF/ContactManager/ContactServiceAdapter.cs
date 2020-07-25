@@ -41,6 +41,13 @@ namespace UI.WPF.ContactManager
            return domainContacts.Select(MapToUi).ToList();
         }
 
+        public  async Task<ICollection<ContactUi>> SearchContactsAsync(string searchText)
+        {
+            var domainContacts = await _contactReaderService.SearchAsync(searchText);
+            return domainContacts.Select(MapToUi).ToList();
+
+        }
+
         private Contact MapToDomain(ContactUi contactUi)
         {
             return new Contact

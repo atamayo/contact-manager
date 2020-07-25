@@ -12,5 +12,6 @@ namespace UI.WPF.ContactManager
         Task DeleteContactByxIdAsync(int id);
 
         Task<ICollection<ContactUi>> GetAllContactsAsync();
+        Task<ICollection<ContactUi>> SearchContactsAsync(string searchText);
     }
 }

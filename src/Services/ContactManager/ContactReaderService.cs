@@ -18,5 +18,10 @@ namespace Services.ContactManager
         {
            return await _contactRepository.GetAllAsync();
         }
+
+        public async Task<ICollection<Contact>> SearchAsync(string searchText)
+        {
+            return await _contactRepository.SearchAsync(searchText);
+        }
     }
 }

@@ -75,5 +75,24 @@ namespace Persistence
                 return await context.Contacts.ToListAsync();
             }
         }
+
+        public async Task<ICollection<Contact>> SearchAsync(string searchText)
+        {
+            var text = searchText.ToLower().Trim();
+
+            await using (var context = new ContactManagerDbContext())
+            {
+                var contacts = await context.Contacts
+                    .Where(contact =>  
+                        EF.Functions.Like(contact.Name, $"%{text}%") ||
+                        EF.Functions.Like(contact.Surname, $"%{text}%") ||
+                        EF.Functions.Like(contact.MobilePhone, $"%{text}%") ||
+                        EF.Functions.Like(contact.Email, $"%{text}%")
+                        )
+                    .ToListAsync();
+
+                return contacts;
+            }
+        }
     }
 }

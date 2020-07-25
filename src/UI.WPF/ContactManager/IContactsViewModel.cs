@@ -10,10 +10,10 @@ namespace UI.WPF.ContactManager
         ICommand NewContactCommand { get; }
         ICommand EditContactCommand { get; }
         ICommand DeleteContactCommand { get; }
+        ICommand SearchCommand { get; }
         event Action NewContactRequested;
         event Action<ContactUi> EditContactRequested;
         void LoadContacts();
-
         bool RefreshContacts { get; set;  }
     }
 }
