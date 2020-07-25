@@ -21,11 +21,17 @@ namespace CrossCuttingConcerns.DependencyInjection
             
         }
 
-        public  void Bootstrap()
+        public void Bootstrap()
         {
             using (var context = new ContactManagerDbContext())
             {
-                context.Database.EnsureCreated();
+                if (context.Database.EnsureCreated())
+                {
+                    var  randomContactGenerator = new RandomContactGenerator();
+                    var contacts = randomContactGenerator.GenerateContacts(100);
+                    context.Contacts.AddRange(contacts);
+                    context.SaveChanges();
+                }
             }
         }
     }

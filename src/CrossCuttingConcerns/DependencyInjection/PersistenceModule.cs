@@ -11,8 +11,6 @@ namespace CrossCuttingConcerns.DependencyInjection
     {
         protected override void Load(ContainerBuilder builder)
         {
-            // builder.RegisterType<InMemoryContactRepository>().As<IContactRepository>().SingleInstance();
-
             builder.RegisterType<SqlServerContactRepository>().As<IContactRepository>();
         }
     }
