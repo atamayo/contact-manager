@@ -10,21 +10,25 @@ namespace CrossCuttingConcerns.DependencyInjection
 {
     public class CompositionRoot
     {
-     
-        public CompositionRoot()
+        private readonly string _connectionString;
+
+        public CompositionRoot(string connectionString)
         {
+            _connectionString = connectionString;
         }
         
         public void ComposeApplication(ContainerBuilder builder)
         {
             builder.RegisterModule<PersistenceModule>();
             builder.RegisterModule<ServiceModule>();
-            
+
+            builder.Register(f => new DbContextFactory(_connectionString)).As<IDbContextFactory>();
+
         }
 
         public void Bootstrap()
         {
-            using (var context = new ContactManagerDbContext())
+            using (var context = new ContactManagerDbContext(_connectionString))
             {
                 if (context.Database.EnsureCreated())
                 {

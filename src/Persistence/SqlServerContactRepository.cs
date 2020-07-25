@@ -12,15 +12,16 @@ namespace Persistence
 {
     public class SqlServerContactRepository : IContactRepository
     {
+        private readonly IDbContextFactory _dbContextFactory;
 
-        public SqlServerContactRepository()
+        public SqlServerContactRepository(IDbContextFactory dbContextFactory)
         {
-            
+            _dbContextFactory = dbContextFactory;
         }
 
         public async Task AddAsync(Contact contact)
         {
-            await using (var context = new ContactManagerDbContext())
+            await using (var context = _dbContextFactory.Create())
             {
                 await context.AddAsync(contact);
 
@@ -29,7 +30,7 @@ namespace Persistence
         }
         public async Task EditAsync(Contact contact)
         {
-            await using (var context = new ContactManagerDbContext())
+            await using (var context = _dbContextFactory.Create())
             {
                 var dbContact = await context.Contacts.FindAsync(contact.Id);
 
@@ -46,7 +47,7 @@ namespace Persistence
 
         public async Task DeleteAsync(int id)
         {
-            await using (var context = new ContactManagerDbContext())
+            await using (var context = _dbContextFactory.Create())
             {
                 var dbContact = await context.Contacts.FindAsync(id);
                 context.Contacts.Attach(dbContact);
@@ -70,7 +71,7 @@ namespace Persistence
 
         public async Task<ICollection<Contact>> GetAllAsync()
         {
-            await using (var context = new ContactManagerDbContext())
+            await using (var context = _dbContextFactory.Create())
             {
                 return await context.Contacts.ToListAsync();
             }
@@ -80,15 +81,15 @@ namespace Persistence
         {
             var text = searchText.ToLower().Trim();
 
-            await using (var context = new ContactManagerDbContext())
+            await using (var context = _dbContextFactory.Create())
             {
                 var contacts = await context.Contacts
-                    .Where(contact =>  
+                    .Where(contact =>
                         EF.Functions.Like(contact.Name, $"%{text}%") ||
                         EF.Functions.Like(contact.Surname, $"%{text}%") ||
                         EF.Functions.Like(contact.MobilePhone, $"%{text}%") ||
                         EF.Functions.Like(contact.Email, $"%{text}%")
-                        )
+                    )
                     .ToListAsync();
 
                 return contacts;

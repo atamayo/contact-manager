@@ -7,6 +7,8 @@ namespace Persistence
 {
     public sealed class ContactManagerDbContext : DbContext
     {
+        private readonly string _connectionString;
+
 
         public static readonly ILoggerFactory DebuggerLoggerFactory =
             LoggerFactory.Create(builder =>
@@ -17,12 +19,13 @@ namespace Persistence
             });
 
 
-        public ContactManagerDbContext()
+        public ContactManagerDbContext(string connectionString)
         {
+            _connectionString = connectionString;
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
-        public ContactManagerDbContext(DbContextOptions<ContactManagerDbContext> options)
+        public ContactManagerDbContext(DbContextOptions options)
         : base(options)
         {
             
@@ -36,8 +39,7 @@ namespace Persistence
             optionsBuilder
                 .UseLoggerFactory(DebuggerLoggerFactory)
                 .EnableSensitiveDataLogging()
-                .UseSqlServer(
-                @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;Initial Catalog = Contacts;");
+                .UseSqlServer(_connectionString);
             
         }
     }

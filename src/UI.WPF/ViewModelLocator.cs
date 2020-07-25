@@ -10,7 +10,9 @@ namespace UI.WPF
 
         public ViewModelLocator()
         {
-            var compositionRoot = new CompositionRoot();
+            var compositionRoot = new CompositionRoot(
+                @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;Initial Catalog = Contacts;");
+
             var builder = new ContainerBuilder();
             compositionRoot.ComposeApplication(builder);
 
