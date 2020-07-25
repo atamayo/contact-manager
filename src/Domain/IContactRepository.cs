@@ -7,7 +7,7 @@ namespace Domain
     public interface IContactRepository
     {
        Contact GetById(int id);
-       Task Save(Contact contact);
-       Task<ICollection<Contact>> GetAll();
+       Task SaveAsync(Contact contact);
+       Task<ICollection<Contact>> GetAllAsync();
     }
 }

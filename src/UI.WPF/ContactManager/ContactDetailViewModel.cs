@@ -8,7 +8,7 @@ namespace UI.WPF.ContactManager
 {
     public class ContactDetailViewModel : ViewModelBase, IContactDetailViewModel
     {
-        private readonly IContactCreationServiceAdapter _contactCreationServiceAdapter;
+        private readonly IContactServiceAdapter _contactServiceAdapter;
         private ContactUi _contactUi;
         public event Action CancelRequested;
         public ICommand CancelContactCommand { get; }
@@ -25,9 +25,9 @@ namespace UI.WPF.ContactManager
             }
         }
 
-        public ContactDetailViewModel(IContactCreationServiceAdapter contactCreationServiceAdapter)
+        public ContactDetailViewModel(IContactServiceAdapter contactServiceAdapter)
         {
-            _contactCreationServiceAdapter = contactCreationServiceAdapter;
+            _contactServiceAdapter = contactServiceAdapter;
             CancelContactCommand = new RelayCommand(OnCancel);
             SaveContactCommand = new RelayCommand(OnSave);
             _contactUi = new ContactUi();
@@ -35,7 +35,7 @@ namespace UI.WPF.ContactManager
 
         private async void OnSave()
         {
-           await _contactCreationServiceAdapter.AddNewAsync(Contact);
+           await _contactServiceAdapter.AddNewContactAsync(Contact);
         }
 
         private void OnCancel()

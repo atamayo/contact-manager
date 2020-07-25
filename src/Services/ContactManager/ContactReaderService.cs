@@ -8,9 +8,15 @@ namespace Services.ContactManager
 {
    public class ContactReaderService : IContactReaderService
     {
-        public Task<ICollection<Contact>> GetAllAsync()
+        private readonly IContactRepository _contactRepository;
+
+        public ContactReaderService(IContactRepository contactRepository)
         {
-            throw new NotImplementedException();
+            _contactRepository = contactRepository;
+        }
+        public async Task<ICollection<Contact>> GetAllAsync()
+        {
+           return await _contactRepository.GetAllAsync();
         }
     }
 }

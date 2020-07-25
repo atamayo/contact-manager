@@ -10,7 +10,7 @@ namespace UI.WPF
         {
             builder.RegisterType<ContactsViewModel>().As<IContactsViewModel>();
             builder.RegisterType<ContactDetailViewModel>().As<IContactDetailViewModel>();
-            builder.RegisterType<ContactCreationServiceAdapter>().As<IContactCreationServiceAdapter>();
+            builder.RegisterType<ContactServiceAdapter>().As<IContactServiceAdapter>();
             builder.RegisterType<MainViewModel>();
         }
     }

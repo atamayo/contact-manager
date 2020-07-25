@@ -26,20 +26,22 @@
                 Margin="5,5,5,5"/>
 
         <DataGrid Grid.Row="1"
+                  GridLinesVisibility="None"
                   IsReadOnly="True"
                   ItemsSource="{Binding ContactsCollection}" 
                   AutoGenerateColumns="False" 
-                  HorizontalAlignment="Left" 
-                  Margin="0,5,0,0"
                   VerticalAlignment="Top"
                   Height="Auto" 
+                  AlternationCount="2"
+                  AlternatingRowBackground="LightBlue"
                   Width="Auto">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" />
-                <DataGridTextColumn Header="MobilePhone" Binding="{Binding MobilePhone}" />
-                <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
+                <DataGridTextColumn Header="Name" Width="100" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Surname" Width="100" Binding="{Binding Surname}" />
+                <DataGridTextColumn Header="MobilePhone" Width="200" Binding="{Binding MobilePhone}" />
+                <DataGridTextColumn Header="Email" Width="200" Binding="{Binding Email}" />
             </DataGrid.Columns>
+            
         </DataGrid>
     </Grid>
 </UserControl>

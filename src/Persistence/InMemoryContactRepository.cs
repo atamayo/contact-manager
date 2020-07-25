@@ -23,13 +23,13 @@ namespace Persistence
             return _contacts.FirstOrDefault(c => c.Id == id);
         }
 
-        public Task Save(Contact contact)
+        public Task SaveAsync(Contact contact)
         {
             _contacts.Add(contact);
             return Task.CompletedTask;
         }
 
-        public Task<ICollection<Contact>> GetAll()
+        public Task<ICollection<Contact>> GetAllAsync()
         {
              return new Task<ICollection<Contact>>( ()=> _contacts.ToList());
         }

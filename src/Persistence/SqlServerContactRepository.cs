@@ -23,24 +23,27 @@ namespace Persistence
             throw new System.NotImplementedException();
         }
 
-        public async Task Save(Contact contact)
+        public async Task SaveAsync(Contact contact)
         {
-           await _contactManagerDbContext.AddAsync(contact);
-           int result = 0;
-           try
-           {
-               result = await _contactManagerDbContext.SaveChangesAsync();
-           }
-           catch (Exception e)
-           {
-               Debug.WriteLine(result);
-               Debug.WriteLine(e.Message);
-                throw;
-           }
-           
+            await _contactManagerDbContext.AddAsync(contact);
+
+            await SaveDbContextChangesAsync();
         }
 
-        public async Task<ICollection<Contact>> GetAll()
+        private async Task SaveDbContextChangesAsync()
+        {
+            try
+            {
+                await _contactManagerDbContext.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
+        }
+
+        public async Task<ICollection<Contact>> GetAllAsync()
         {
           return await _contactManagerDbContext.Contacts.ToListAsync();
         }

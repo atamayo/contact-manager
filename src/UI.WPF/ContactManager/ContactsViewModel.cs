@@ -9,15 +9,15 @@ namespace UI.WPF.ContactManager
 {
     class ContactsViewModel : ViewModelBase, IContactsViewModel
     {
-        private readonly IContactReaderService _contactReaderService;
+        private readonly IContactServiceAdapter _contactServiceAdapter;
         public ObservableCollection<ContactUi> ContactsCollection { get;  }
         public ICommand NewContactCommand { get; }
 
         public event Action NewContactRequested = delegate { };
 
-        public ContactsViewModel(IContactReaderService contactReaderService)
+       public ContactsViewModel(IContactServiceAdapter contactServiceAdapter)
        {
-           _contactReaderService = contactReaderService;
+           _contactServiceAdapter = contactServiceAdapter;
            ContactsCollection = new ObservableCollection<ContactUi>();
 
            NewContactCommand = new RelayCommand(OnNewContact);
@@ -28,9 +28,15 @@ namespace UI.WPF.ContactManager
             NewContactRequested();
         }
 
-        public void LoadContacts()
+        public async void LoadContacts()
         {
-         
+            var contacts = await _contactServiceAdapter.GetAllContactsAsync();
+
+            ContactsCollection.Clear();
+            foreach (var contactUi in contacts)
+            {
+                ContactsCollection.Add(contactUi);  
+            }
         }
     }
 }
