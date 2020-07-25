@@ -8,8 +8,12 @@ namespace UI.WPF.ContactManager
     {
         ObservableCollection<ContactUi> ContactsCollection { get; }
         ICommand NewContactCommand { get; }
+
+        ICommand EditContactCommand { get; }
+
         event Action NewContactRequested;
 
+        event Action<ContactUi> EditContactRequested;
         void LoadContacts();
     }
 }

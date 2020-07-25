@@ -7,8 +7,7 @@ namespace UI.WPF.ContactManager
     public interface IContactServiceAdapter
     {
         Task AddNewContactAsync(ContactUi contactUi);
-
+        Task EditContactAsync(ContactUi contactUi);
         Task<ICollection<ContactUi>> GetAllContactsAsync();
-
     }
 }

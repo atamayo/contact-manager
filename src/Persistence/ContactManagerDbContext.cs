@@ -2,11 +2,12 @@
 using Domain;
 namespace Persistence
 {
-    public class ContactManagerDbContext : DbContext
+    public sealed class ContactManagerDbContext : DbContext
     {
         public ContactManagerDbContext()
         {
-            
+            // disable tracking to improve performance since is not used.
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public ContactManagerDbContext(DbContextOptions<ContactManagerDbContext> options)

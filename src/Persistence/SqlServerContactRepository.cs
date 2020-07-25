@@ -11,11 +11,10 @@ namespace Persistence
 {
     public class SqlServerContactRepository : IContactRepository
     {
-        private readonly ContactManagerDbContext _contactManagerDbContext;
 
-        public SqlServerContactRepository(ContactManagerDbContext contactManagerDbContext)
+        public SqlServerContactRepository()
         {
-            _contactManagerDbContext = contactManagerDbContext;
+            
         }
 
         public Contact GetById(int id)
@@ -23,18 +22,39 @@ namespace Persistence
             throw new System.NotImplementedException();
         }
 
-        public async Task SaveAsync(Contact contact)
+        public async Task AddAsync(Contact contact)
         {
-            await _contactManagerDbContext.AddAsync(contact);
+            await using (var context = new ContactManagerDbContext())
+            {
+                await context.AddAsync(contact);
 
-            await SaveDbContextChangesAsync();
+                await SaveDbContextChangesAsync(context);
+            }
+        }
+        public async Task EditAsync(Contact contact)
+        {
+            await using (var context = new ContactManagerDbContext())
+            {
+                var dbContact = await context.Contacts.FindAsync(contact.Id);
+
+                context.Contacts.Attach(dbContact);
+
+                dbContact.Name = contact.Name;
+                dbContact.Surname = contact.Surname;
+                dbContact.MobilePhone = contact.MobilePhone;
+                dbContact.Email = contact.Email;
+
+                
+
+                await SaveDbContextChangesAsync(context);
+            }
         }
 
-        private async Task SaveDbContextChangesAsync()
+        private async Task SaveDbContextChangesAsync(DbContext context)
         {
             try
             {
-                await _contactManagerDbContext.SaveChangesAsync();
+                await context.SaveChangesAsync();
             }
             catch (Exception e)
             {
@@ -45,7 +65,10 @@ namespace Persistence
 
         public async Task<ICollection<Contact>> GetAllAsync()
         {
-          return await _contactManagerDbContext.Contacts.ToListAsync();
+            await using (var context = new ContactManagerDbContext())
+            {
+                return await context.Contacts.ToListAsync();
+            }
         }
     }
 }

@@ -40,6 +40,16 @@
                 <DataGridTextColumn Header="Surname" Width="100" Binding="{Binding Surname}" />
                 <DataGridTextColumn Header="MobilePhone" Width="200" Binding="{Binding MobilePhone}" />
                 <DataGridTextColumn Header="Email" Width="200" Binding="{Binding Email}" />
+
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                          <Button Content="Edit"
+                                  Command="{Binding DataContext.EditContactCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                  CommandParameter="{Binding}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
             
         </DataGrid>

@@ -17,7 +17,12 @@ namespace Services.ContactManager
 
         public async Task AddNewAsync(Contact contact)
         {
-            await _contactRepository.SaveAsync(contact);
+            await _contactRepository.AddAsync(contact);
+        }
+
+        public async Task EditAsync(Contact contact)
+        {
+            await _contactRepository.EditAsync(contact);
         }
     }
 }

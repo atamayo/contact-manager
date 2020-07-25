@@ -12,8 +12,11 @@ namespace UI.WPF.ContactManager
         private readonly IContactServiceAdapter _contactServiceAdapter;
         public ObservableCollection<ContactUi> ContactsCollection { get;  }
         public ICommand NewContactCommand { get; }
+        public ICommand EditContactCommand { get; }
 
-        public event Action NewContactRequested = delegate { };
+        public event Action NewContactRequested;
+
+        public event Action<ContactUi> EditContactRequested;
 
        public ContactsViewModel(IContactServiceAdapter contactServiceAdapter)
        {
@@ -21,12 +24,18 @@ namespace UI.WPF.ContactManager
            ContactsCollection = new ObservableCollection<ContactUi>();
 
            NewContactCommand = new RelayCommand(OnNewContact);
+           EditContactCommand = new RelayCommand<ContactUi>(OnEditContact);
        }
 
-        private void OnNewContact()
-        {
-            NewContactRequested();
-        }
+       private void OnEditContact(ContactUi contactUi)
+       {
+           EditContactRequested?.Invoke(contactUi);
+       }
+
+       private void OnNewContact()
+       {
+           NewContactRequested?.Invoke();
+       }
 
         public async void LoadContacts()
         {

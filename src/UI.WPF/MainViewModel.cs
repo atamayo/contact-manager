@@ -12,11 +12,16 @@ namespace UI.WPF
         {
             ContactsViewModel = contactsViewModel;
             CurrentViewModel = contactsViewModel;
+         
             ContactsViewModel.NewContactRequested += OnNewContactRequested;
+            ContactsViewModel.EditContactRequested += OnContactEditRequested;
 
             ContactDetailViewModel = contactDetailViewModel;
             ContactDetailViewModel.CancelRequested += OnCancelRequested;
+            ContactDetailViewModel.SaveCompleted += OnSaveCompleted;
         }
+
+      
 
         public IContactsViewModel ContactsViewModel { get; }
         public IContactDetailViewModel ContactDetailViewModel { get; }
@@ -31,6 +36,20 @@ namespace UI.WPF
             }
         }
 
+        private void OnContactEditRequested(ContactUi contactUi)
+        {
+            ContactDetailViewModel.EditMode = true;
+            ContactDetailViewModel.Contact = contactUi;
+            PerformNavigation(Views.DetailsContactView);
+        }
+
+
+        private void OnSaveCompleted()
+        {
+            PerformNavigation(Views.ContactsView);
+        }
+
+
         private void OnCancelRequested()
         {
             PerformNavigation(Views.ContactsView);
@@ -38,6 +57,8 @@ namespace UI.WPF
 
         private void OnNewContactRequested()
         {
+            ContactDetailViewModel.EditMode = false;
+            ContactDetailViewModel.Contact = new ContactUi();
             PerformNavigation(Views.DetailsContactView);
         }
 

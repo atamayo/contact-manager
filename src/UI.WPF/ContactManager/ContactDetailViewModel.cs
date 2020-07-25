@@ -11,6 +11,7 @@ namespace UI.WPF.ContactManager
         private readonly IContactServiceAdapter _contactServiceAdapter;
         private ContactUi _contactUi;
         public event Action CancelRequested;
+        public event Action SaveCompleted;
         public ICommand CancelContactCommand { get; }
 
         public ICommand SaveContactCommand { get; }
@@ -25,17 +26,27 @@ namespace UI.WPF.ContactManager
             }
         }
 
+        public bool EditMode { get; set; }
+
         public ContactDetailViewModel(IContactServiceAdapter contactServiceAdapter)
         {
             _contactServiceAdapter = contactServiceAdapter;
             CancelContactCommand = new RelayCommand(OnCancel);
             SaveContactCommand = new RelayCommand(OnSave);
-            _contactUi = new ContactUi();
         }
 
         private async void OnSave()
         {
-           await _contactServiceAdapter.AddNewContactAsync(Contact);
+            if (EditMode)
+            {
+                await _contactServiceAdapter.EditContactAsync(Contact);
+            }
+            else
+            {
+                await _contactServiceAdapter.AddNewContactAsync(Contact);
+            }
+            
+            SaveCompleted?.Invoke();
         }
 
         private void OnCancel()

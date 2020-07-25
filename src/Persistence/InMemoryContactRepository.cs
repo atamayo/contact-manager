@@ -18,15 +18,15 @@ namespace Persistence
             _contacts = new ConcurrentBag<Contact>();
         }
 
-        public Contact GetById(int id)
-        {
-            return _contacts.FirstOrDefault(c => c.Id == id);
-        }
-
-        public Task SaveAsync(Contact contact)
+        public Task AddAsync(Contact contact)
         {
             _contacts.Add(contact);
             return Task.CompletedTask;
+        }
+
+        public Task EditAsync(Contact contact)
+        {
+            throw new NotImplementedException();
         }
 
         public Task<ICollection<Contact>> GetAllAsync()

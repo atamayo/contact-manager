@@ -25,6 +25,12 @@ namespace UI.WPF.ContactManager
             await _contactCreationService.AddNewAsync(contactDomain);
         }
 
+        public async Task EditContactAsync(ContactUi contactUi)
+        {
+            var contactDomain = MapToDomain(contactUi);
+            await _contactCreationService.EditAsync(contactDomain);
+        }
+
         public async Task<ICollection<ContactUi>> GetAllContactsAsync()
         {
             var domainContacts = await _contactReaderService.GetAllAsync();

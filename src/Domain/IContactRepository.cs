@@ -6,8 +6,8 @@ namespace Domain
 {
     public interface IContactRepository
     {
-       Contact GetById(int id);
-       Task SaveAsync(Contact contact);
+       Task AddAsync(Contact contact);
+       Task EditAsync(Contact contact);
        Task<ICollection<Contact>> GetAllAsync();
     }
 }

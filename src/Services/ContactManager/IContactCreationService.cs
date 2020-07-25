@@ -6,5 +6,6 @@ namespace Services.ContactManager
     public interface IContactCreationService
     {
         Task AddNewAsync(Contact contact);
+        Task EditAsync(Contact contact);
     }
 }
