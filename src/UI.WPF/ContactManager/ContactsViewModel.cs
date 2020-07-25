@@ -13,6 +13,7 @@ namespace UI.WPF.ContactManager
         public ObservableCollection<ContactUi> ContactsCollection { get;  }
         public ICommand NewContactCommand { get; }
         public ICommand EditContactCommand { get; }
+        public ICommand DeleteContactCommand { get; }
 
         public event Action NewContactRequested;
 
@@ -25,6 +26,13 @@ namespace UI.WPF.ContactManager
 
            NewContactCommand = new RelayCommand(OnNewContact);
            EditContactCommand = new RelayCommand<ContactUi>(OnEditContact);
+           DeleteContactCommand = new RelayCommand<ContactUi>(OnDeleteContact);
+       }
+
+       private async void OnDeleteContact(ContactUi contactUi)
+       {
+           await _contactServiceAdapter.DeleteContactByxIdAsync(contactUi.Id);
+           ContactsCollection.Remove(contactUi);
        }
 
        private void OnEditContact(ContactUi contactUi)

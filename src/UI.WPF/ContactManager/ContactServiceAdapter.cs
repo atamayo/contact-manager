@@ -30,6 +30,10 @@ namespace UI.WPF.ContactManager
             var contactDomain = MapToDomain(contactUi);
             await _contactCreationService.EditAsync(contactDomain);
         }
+        public async Task DeleteContactByxIdAsync(int id)
+        {
+           await _contactCreationService.DeleteAsync(id);
+        }
 
         public async Task<ICollection<ContactUi>> GetAllContactsAsync()
         {

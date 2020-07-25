@@ -29,6 +29,11 @@ namespace Persistence
             throw new NotImplementedException();
         }
 
+        public Task DeleteAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<ICollection<Contact>> GetAllAsync()
         {
              return new Task<ICollection<Contact>>( ()=> _contacts.ToList());

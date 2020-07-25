@@ -7,5 +7,7 @@ namespace Services.ContactManager
     {
         Task AddNewAsync(Contact contact);
         Task EditAsync(Contact contact);
+
+        Task DeleteAsync(int id);
     }
 }

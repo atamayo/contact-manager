@@ -8,6 +8,7 @@ namespace Domain
     {
        Task AddAsync(Contact contact);
        Task EditAsync(Contact contact);
+       Task DeleteAsync(int id);
        Task<ICollection<Contact>> GetAllAsync();
     }
 }

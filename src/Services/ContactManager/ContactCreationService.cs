@@ -24,5 +24,9 @@ namespace Services.ContactManager
         {
             await _contactRepository.EditAsync(contact);
         }
+        public async Task DeleteAsync(int id)
+        {
+            await _contactRepository.DeleteAsync(id);
+        }
     }
 }

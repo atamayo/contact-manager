@@ -8,6 +8,9 @@ namespace UI.WPF.ContactManager
     {
         Task AddNewContactAsync(ContactUi contactUi);
         Task EditContactAsync(ContactUi contactUi);
+
+        Task DeleteContactByxIdAsync(int id);
+
         Task<ICollection<ContactUi>> GetAllContactsAsync();
     }
 }

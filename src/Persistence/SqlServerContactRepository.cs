@@ -44,6 +44,17 @@ namespace Persistence
             }
         }
 
+        public async Task DeleteAsync(int id)
+        {
+            await using (var context = new ContactManagerDbContext())
+            {
+                var dbContact = await context.Contacts.FindAsync(id);
+                context.Contacts.Attach(dbContact);
+                context.Remove(dbContact);
+                await SaveDbContextChangesAsync(context);
+            }
+        }
+
         private async Task SaveDbContextChangesAsync(DbContext context)
         {
             try
