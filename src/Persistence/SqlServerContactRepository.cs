@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Persistence
 {
     public class SqlServerContactRepository : IContactRepository
@@ -15,11 +16,6 @@ namespace Persistence
         public SqlServerContactRepository()
         {
             
-        }
-
-        public Contact GetById(int id)
-        {
-            throw new System.NotImplementedException();
         }
 
         public async Task AddAsync(Contact contact)
@@ -43,8 +39,6 @@ namespace Persistence
                 dbContact.Surname = contact.Surname;
                 dbContact.MobilePhone = contact.MobilePhone;
                 dbContact.Email = contact.Email;
-
-                
 
                 await SaveDbContextChangesAsync(context);
             }
