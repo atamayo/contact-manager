@@ -84,15 +84,14 @@ namespace Persistence
             await using (var context = _dbContextFactory.Create())
             {
                 var contacts = await context.Contacts
+                    .Select( c=> new { c, contactText = $"{c.Name}{c.Surname}{c.MobilePhone}{c.MobilePhone}"  })
                     .Where(contact =>
-                        EF.Functions.Like(contact.Name, $"%{text}%") ||
-                        EF.Functions.Like(contact.Surname, $"%{text}%") ||
-                        EF.Functions.Like(contact.MobilePhone, $"%{text}%") ||
-                        EF.Functions.Like(contact.Email, $"%{text}%")
+                        EF.Functions.Like(contact.contactText, $"%{text}%")
+                        
                     )
                     .ToListAsync();
 
-                return contacts;
+                return contacts.Select(c => c.c).ToList();
             }
         }
     }
