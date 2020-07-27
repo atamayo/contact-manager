@@ -21,7 +21,23 @@ namespace Persistence
             _connectionString = connectionString;
         }
 
-        public DbContextOptions CreateDefaultOptions()
+        public ContextConfigurator()
+        {
+            
+        }
+
+        public DbContextOptions CreateInMemoryContextOptions(string databaseName)
+        {
+            var builder = new DbContextOptionsBuilder();
+
+            builder.UseLoggerFactory(DebuggerLoggerFactory)
+                .EnableSensitiveDataLogging()
+                .UseInMemoryDatabase(databaseName);
+
+            return builder.Options;
+        }
+
+        public DbContextOptions CreateRealDbContextOptions()
         {
             var builder = new DbContextOptionsBuilder();
 

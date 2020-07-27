@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using CrossCuttingConcerns.DataGenerator;
 using CrossCuttingConcerns.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace CrossCuttingConcerns
@@ -9,22 +10,34 @@ namespace CrossCuttingConcerns
     {
 
         private readonly ContextConfigurator _contextConfigurator;
-
+        private readonly bool _useRealDatabase;
+        private DbContextOptions _contextOptions;
         public ApplicationInstaller(string connectionString)
         {
+            _useRealDatabase = true;
            _contextConfigurator = new ContextConfigurator(connectionString);
         }
-        
+
+        public ApplicationInstaller()
+        {
+            _useRealDatabase = false;
+            _contextConfigurator = new ContextConfigurator();
+        }
+
         public void ComposeApplication(ContainerBuilder builder)
         {
             builder.RegisterModule<PersistenceModule>();
             builder.RegisterModule<ServiceModule>();
-            builder.Register(f => new DbContextFactory(_contextConfigurator.CreateDefaultOptions())).As<IDbContextFactory>();
+            
+            _contextOptions = _useRealDatabase ? _contextConfigurator.CreateRealDbContextOptions() : _contextConfigurator.CreateInMemoryContextOptions("ContactManager");
+
+            builder.Register(f => new DbContextFactory(_contextOptions))
+                .As<IDbContextFactory>();
         }
 
         public void EnsureDatabaseCreation()
         {
-            using (var context = new ContactManagerDbContext(_contextConfigurator.CreateDefaultOptions()))
+            using (var context = new ContactManagerDbContext(_contextOptions))
             {
                 if (context.Database.EnsureCreated())
                 {

@@ -31,7 +31,7 @@ namespace Persistence.Tests
                 .UseSqlServer(cnnString);
 
             var dbFactory = new DbContextFactory(builder.Options);
-            _sqlContactRepository = new SqlServerContactRepository(dbFactory);
+            _sqlContactRepository = new ContactRepository(dbFactory);
 
             using (var context = dbFactory.Create())
             {

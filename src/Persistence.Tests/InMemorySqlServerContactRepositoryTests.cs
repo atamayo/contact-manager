@@ -16,7 +16,7 @@ namespace Persistence.Tests
             builder.UseInMemoryDatabase("ContactsInMemory");
 
             var dbFactory = new DbContextFactory(builder.Options);
-            _sqlContactRepository = new SqlServerContactRepository(dbFactory);
+            _sqlContactRepository = new ContactRepository(dbFactory);
             
         }
 

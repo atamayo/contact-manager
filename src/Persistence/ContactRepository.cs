@@ -10,11 +10,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistence
 {
-    public class SqlServerContactRepository : IContactRepository
+    public class ContactRepository : IContactRepository
     {
         private readonly IDbContextFactory _dbContextFactory;
 
-        public SqlServerContactRepository(IDbContextFactory dbContextFactory)
+        public ContactRepository(IDbContextFactory dbContextFactory)
         {
             _dbContextFactory = dbContextFactory;
         }

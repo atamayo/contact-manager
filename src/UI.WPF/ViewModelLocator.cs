@@ -10,8 +10,10 @@ namespace UI.WPF
 
         public ViewModelLocator()
         {
-            var applicationInstaller = new ApplicationInstaller(
-                @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;Initial Catalog = ContactManager;");
+            //var applicationInstaller = new ApplicationInstaller(
+            //    @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;Initial Catalog = ContactManager;");
+
+            var applicationInstaller = new ApplicationInstaller();
 
             var builder = new ContainerBuilder();
             
