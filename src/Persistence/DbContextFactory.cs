@@ -4,16 +4,16 @@ namespace Persistence
 {
     public class DbContextFactory : IDbContextFactory
     {
-        private readonly string _connectionString;
+        private readonly DbContextOptions _options;
 
-        public DbContextFactory(string connectionString)
+        public DbContextFactory(DbContextOptions options)
         {
-            _connectionString = connectionString;
+            _options = options;
         }
 
         public ContactManagerDbContext Create()
         {
-            return new ContactManagerDbContext(_connectionString);
+            return new ContactManagerDbContext(_options);
         }
     }
 }

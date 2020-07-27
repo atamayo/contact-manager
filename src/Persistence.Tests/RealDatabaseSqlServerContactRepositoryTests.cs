@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
 using Domain;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 
 namespace Persistence.Tests
@@ -8,13 +10,27 @@ namespace Persistence.Tests
     {
         private IContactRepository _sqlContactRepository;
 
+        public static readonly ILoggerFactory ConsoleLoggerFactory =
+
+            LoggerFactory.Create(builder =>
+            {
+                builder.AddFilter((category, level) =>
+                    category == DbLoggerCategory.Database.Command.Name &&
+                    level == LogLevel.Information).AddConsole();
+            });
+
         [SetUp]
         public void Setup()
         {
             string cnnString =
                 @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;Initial Catalog = ContactsTests;";
 
-            var dbFactory = new DbContextFactory(cnnString);
+            var builder = new DbContextOptionsBuilder()
+                .UseLoggerFactory(ConsoleLoggerFactory)
+                .EnableSensitiveDataLogging()
+                .UseSqlServer(cnnString);
+
+            var dbFactory = new DbContextFactory(builder.Options);
             _sqlContactRepository = new SqlServerContactRepository(dbFactory);
 
             using (var context = dbFactory.Create())
