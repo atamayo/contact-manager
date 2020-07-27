@@ -28,6 +28,7 @@ namespace Persistence
                 await SaveDbContextChangesAsync(context);
             }
         }
+
         public async Task EditAsync(Contact contact)
         {
             await using (var context = _dbContextFactory.Create())
@@ -84,14 +85,15 @@ namespace Persistence
             await using (var context = _dbContextFactory.Create())
             {
                 var contacts = await context.Contacts
-                    .Select( c=> new { c, contactText = $"{c.Name}{c.Surname}{c.MobilePhone}{c.MobilePhone}"  })
                     .Where(contact =>
-                        EF.Functions.Like(contact.contactText, $"%{text}%")
-                        
+                        EF.Functions.Like(contact.Name, $"%{text}%") ||
+                        EF.Functions.Like(contact.Surname, $"%{text}%") ||
+                        EF.Functions.Like(contact.MobilePhone, $"%{text}%") ||
+                        EF.Functions.Like(contact.Email, $"%{text}%")
                     )
                     .ToListAsync();
 
-                return contacts.Select(c => c.c).ToList();
+                return contacts;
             }
         }
     }
