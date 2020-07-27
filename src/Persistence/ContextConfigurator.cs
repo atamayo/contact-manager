@@ -29,11 +29,7 @@ namespace Persistence
         public DbContextOptions CreateInMemoryContextOptions(string databaseName)
         {
             var builder = new DbContextOptionsBuilder();
-
-            builder.UseLoggerFactory(DebuggerLoggerFactory)
-                .EnableSensitiveDataLogging()
-                .UseInMemoryDatabase(databaseName);
-
+            builder.UseInMemoryDatabase(databaseName);
             return builder.Options;
         }
 
