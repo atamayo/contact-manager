@@ -16,5 +16,12 @@ namespace Persistence
 
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<SocialNetwork> SocialNetworks { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Contact>().ToTable("Contact");
+            builder.Entity<SocialNetwork>().ToTable("SocialNetwork");
+        }
     }
 }

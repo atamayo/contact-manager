@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using CrossCuttingConcerns.DependencyInjection;
+using CrossCuttingConcerns;
 using GalaSoft.MvvmLight;
 
 namespace UI.WPF
@@ -10,11 +10,12 @@ namespace UI.WPF
 
         public ViewModelLocator()
         {
-            var compositionRoot = new CompositionRoot(
-                @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;Initial Catalog = Contacts;");
+            var applicationInstaller = new ApplicationInstaller(
+                @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;Initial Catalog = ContactManager;");
 
             var builder = new ContainerBuilder();
-            compositionRoot.ComposeApplication(builder);
+            
+            applicationInstaller.ComposeApplication(builder);
 
             builder.RegisterModule<UiModule>();
 
@@ -27,7 +28,7 @@ namespace UI.WPF
             else
             {
 
-                compositionRoot.Bootstrap();
+                applicationInstaller.EnsureDatabaseCreation();
             }
             
         }

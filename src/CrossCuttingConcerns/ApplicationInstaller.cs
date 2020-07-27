@@ -1,35 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Autofac;
-using CrossCuttingConcerns.DataBase;
+﻿using Autofac;
 using CrossCuttingConcerns.DataGenerator;
+using CrossCuttingConcerns.DependencyInjection;
 using Persistence;
 
-namespace CrossCuttingConcerns.DependencyInjection
+namespace CrossCuttingConcerns
 {
-    public class CompositionRoot
+    public class ApplicationInstaller
     {
 
-        private DataBaseConfigurator _dataBaseConfigurator;
+        private readonly ContextConfigurator _contextConfigurator;
 
-        public CompositionRoot(string connectionString)
+        public ApplicationInstaller(string connectionString)
         {
-           _dataBaseConfigurator = new DataBaseConfigurator(connectionString);
+           _contextConfigurator = new ContextConfigurator(connectionString);
         }
         
         public void ComposeApplication(ContainerBuilder builder)
         {
             builder.RegisterModule<PersistenceModule>();
             builder.RegisterModule<ServiceModule>();
-            builder.Register(f => new DbContextFactory(_dataBaseConfigurator.CreateOptions())).As<IDbContextFactory>();
+            builder.Register(f => new DbContextFactory(_contextConfigurator.CreateDefaultOptions())).As<IDbContextFactory>();
         }
 
-        public void Bootstrap()
+        public void EnsureDatabaseCreation()
         {
-
-            using (var context = new ContactManagerDbContext(_dataBaseConfigurator.CreateOptions()))
+            using (var context = new ContactManagerDbContext(_contextConfigurator.CreateDefaultOptions()))
             {
                 if (context.Database.EnsureCreated())
                 {

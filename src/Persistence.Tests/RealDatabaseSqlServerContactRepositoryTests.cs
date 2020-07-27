@@ -23,7 +23,7 @@ namespace Persistence.Tests
         public void Setup()
         {
             string cnnString =
-                @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;Initial Catalog = ContactsTests;";
+                @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True;Initial Catalog = ContactManagerTest;";
 
             var builder = new DbContextOptionsBuilder()
                 .UseLoggerFactory(ConsoleLoggerFactory)

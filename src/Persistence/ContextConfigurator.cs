@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CrossCuttingConcerns.DataGenerator;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Persistence;
 
-namespace CrossCuttingConcerns.DataBase
+namespace Persistence
 {
-    public class DataBaseConfigurator
+    public class ContextConfigurator
     {
         private readonly string _connectionString;
 
@@ -21,12 +16,12 @@ namespace CrossCuttingConcerns.DataBase
                     level == LogLevel.Information).AddDebug();
             });
 
-        public DataBaseConfigurator(string connectionString)
+        public ContextConfigurator(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        public DbContextOptions CreateOptions()
+        public DbContextOptions CreateDefaultOptions()
         {
             var builder = new DbContextOptionsBuilder();
 
